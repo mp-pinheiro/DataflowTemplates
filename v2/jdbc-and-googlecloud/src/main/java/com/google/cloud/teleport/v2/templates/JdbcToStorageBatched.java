@@ -165,7 +165,7 @@ public class JdbcToStorageBatched {
 
         // --- Build DataSourceConfiguration using ValueProviders + KMS utils ---
         JdbcIO.DataSourceConfiguration dataSourceConfiguration = JdbcIO.DataSourceConfiguration.create(
-                StaticValueProvider.of(options.getDriverClassName().get()),
+                StaticValueProvider.of(options.getDriverClassName()),
                 maybeDecrypt(options.getConnectionUrl(), options.getKMSEncryptionKey()))
                 .withDriverJars(options.getDriverJars());
 
