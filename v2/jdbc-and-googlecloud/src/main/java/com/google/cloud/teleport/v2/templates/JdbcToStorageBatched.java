@@ -27,6 +27,7 @@ import org.apache.beam.sdk.extensions.avro.io.AvroIO;
 import org.apache.beam.sdk.io.jdbc.JdbcIO;
 import org.apache.beam.sdk.options.PipelineOptionsFactory;
 import org.apache.beam.sdk.options.ValueProvider;
+import org.apache.beam.sdk.options.ValueProvider.StaticValueProvider;
 import org.apache.beam.sdk.values.PCollection;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -167,7 +168,7 @@ public class JdbcToStorageBatched {
                 options.getKMSEncryptionKey());
 
         JdbcIO.DataSourceConfiguration dataSourceConfiguration = JdbcIO.DataSourceConfiguration.create(
-                options.getDriverClassName(), decryptedConnectionUrl)
+                StaticValueProvider.of(options.getDriverClassName()), decryptedConnectionUrl)
                 .withDriverJars(options.getDriverJars());
 
         if (options.getUsername() != null) {
